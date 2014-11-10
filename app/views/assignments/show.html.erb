@@ -1,0 +1,8 @@
+<% if @assignment %>
+<% @assignment.each do |post|%>
+	<div id="post">
+		
+	<%= post.points%>	<%=post.description %>
+</div>
+<%end%>
+<%end%>
