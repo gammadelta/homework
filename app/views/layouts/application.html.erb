@@ -9,7 +9,7 @@
   <body>
     <div>
       <% if current_user %>
-        Signed in as <strong><%= current_user.userName %></strong>
+        Signed in as <strong><%=link_to current_user.userName, 'profile' %></strong>
           
           with Google!
 
