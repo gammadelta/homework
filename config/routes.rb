@@ -1,9 +1,9 @@
 GoogleAuthExample::Application.routes.draw do
-  get "assignments/new"
+  #get "assignments/new", via: 'get'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
-  get 'post', to:'assignments#new'
+  #get 'post-help', to:'assignments#new'
   get 'profile', to: 'sessions#show'
   get 'edit', to: 'sessions#edit'
   get 'edit/:id', to: 'assignments#edit'

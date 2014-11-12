@@ -1,7 +1,7 @@
 <%if current_user%>
 <div id="post">
 
-<%= button_to "Post New Assignment","/post", class: "mid section"%>
+<%= link_to "Post New Assignment", "/assignments/new"%>
 </div>
 
 <% Subject.all.each do |subject|%>
