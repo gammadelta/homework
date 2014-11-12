@@ -1,4 +1,5 @@
 
 		Posted by <%= @user.userName %> <br>
-	<%= @assignment.points%>	<%=@assignment.description %> <% if current_user.id == @user.id %>  <%= link_to 'edit' %> <%end %>
+	<%= @assignment.points%>	<%=@assignment.description %> <% if current_user.id == @user.id %>  
+	<%= link_to "Settings", edit_assignment_path(@assignment) %><%end %>
 

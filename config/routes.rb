@@ -6,10 +6,11 @@ GoogleAuthExample::Application.routes.draw do
   get 'post', to:'assignments#new'
   get 'profile', to: 'sessions#show'
   get 'edit', to: 'sessions#edit'
+  get 'edit/:id', to: 'assignments#edit'
 
   resource :sessions, only: [:show, :edit, :delete, :create]
   resource :home, only: [:show]
-  resources :assignments
+  resources :assignments, only:[:show, :edit, :update, :create, :new]
 
   root to: "home#show"
 end

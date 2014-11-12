@@ -5,12 +5,11 @@
 		
 	  <div id="assignment-description">
       	<%= f.label :description %><br>
-      	<%= f.text_area :description, placeholder: "descirbe your assignemnt here"  %>
+      	<%= f.text_area :description%>
   	  </div>
   	  <div id="points">
-      You have <%=current_user.points %> 
-      <%= f.label :points %> <br>
-      <%= f.text_field :points, placeholder: "number of points"%>
+      You have <%=current_user.points + @assignment.points %> points to use <br>
+      <%= f.text_field :points%>
   	  </div>	
   	  <div id="subject">
    <%=f.label :subject%><br>
