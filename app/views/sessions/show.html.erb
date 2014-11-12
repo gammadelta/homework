@@ -1,0 +1,11 @@
+<%= current_user.userName %>
+
+Dont like your name <%= link_to "Change it", 'sessions/edit' %>
+
+<% @assignment.each do |post|%>
+	<div id="post">
+		
+	<%= post.points%>	<%=post.description %>
+</div>
+<%end%>
+

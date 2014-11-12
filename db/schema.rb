@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20141110041913) do
     t.integer  "points"
     t.integer  "doneBy"
     t.string   "answer"
+    t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

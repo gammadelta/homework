@@ -1,8 +1,4 @@
-<% if @assignment %>
-<% @assignment.each do |post|%>
-	<div id="post">
-		
-	<%= post.points%>	<%=post.description %>
-</div>
-<%end%>
-<%end%>
+
+		Posted by <%= @user.userName %> <br>
+	<%= @assignment.points%>	<%=@assignment.description %> <% if current_user.id == @user.id %>  <%= link_to 'edit' %> <%end %>
+

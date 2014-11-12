@@ -22,6 +22,19 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path
   end
+
+  def show
+    @assignment = Assignment.find(:all, :conditions => {UID: current_user.id})
+  end
+  
+  def edit
+      user = User.find(current_user.id)
+      user.userName = generateName
+      user.save!
+      redirect_to :back
+  end
+
+
   private
   def generateName
      adjs = ["happy", "annoyed", "madly", "highfalutin", "hurt", "hot", "kindhearted", "groovy", "acceptable", "knowledgeable", "plain", "grey", "clumsy", "wide-eyed", "long", "wide", "puffy", "polite", "frequent", "nauseating", "encouraging", "lowly", "complex", "easy", "willing", "naughty", "cold", "abhorrent", "observant", "unruly", "merciful", "accurate", "red", "upset", "boorish", "scary", "huge", "level", "mighty", "good", "picayune", "shaggy", "snobbish", "questionable", "awesome", "guiltless", "secret", "wry", "petite", "organic", "stormy", "obese", "silly", "ajar", "raspy", "mountainous", "abject", "well-to-do", "ahead", "naive", "clammy", "round", "stupendous", "sparkling", "dead", "nimble", "woebegone", "dynamic", "wholesale", "youthful", "hateful", "unusual", "tall", "fortunate", "elated", "rebel", "thick", "lacking", "important", "unwieldy", "smelly", "chivalrous", "puny", "unequal", "ashamed", "hissing", "nosy", "quickest", "ten", "dry", "elderly", "fine", "homely", "bustling", "woozy", "separate", "ruddy", "interesting", "deafening", "needless"]

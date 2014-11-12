@@ -2,19 +2,21 @@ class AssignmentsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
 
  def show
- 	@assignment = Assignment.find(:all, :conditions => {UID: current_user.id})
+ 	logged_in_user
+ 	@assignment = Assignment.find(params[:id])
+ 	@user = User.find(@assignment.UID)
+
  end
 
  def new
- 	if current_user
+ 	logged_in_user
  	@assignment = Assignment.new
- else
- 	redirect_to root_path
- end
+
 
  end
  
   def create
+  	logged_in_user
   	@assignment = Assignment.new(params[:assignment].permit!)
   	puts(@assignment.points)
   	@assignment.UID = current_user.id

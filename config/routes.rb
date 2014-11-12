@@ -4,11 +4,12 @@ GoogleAuthExample::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'post', to:'assignments#new'
-  get 'my-posts', to:'assignments#show'
+  get 'profile', to: 'sessions#show'
+  get 'edit', to: 'sessions#edit'
 
-  resources :sessions, only: [:create, :destroy]
+  resource :sessions, only: [:show, :edit, :delete, :create]
   resource :home, only: [:show]
-  resource :assignments, only: [:show, :new, :create, :index, :udated]
+  resources :assignments
 
   root to: "home#show"
 end

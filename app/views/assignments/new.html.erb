@@ -6,9 +6,12 @@
       <%= f.label :description %>
       <%= f.text_field :description  %>
 
-      You have <%=current_user.points %><%@p = current_user.points %><% @uid = current_user.id%>
+      You have <%=current_user.points %>
       <%= f.label :points %>
       <%= f.text_field :points %>
+
+   <%=f.label :subject%>
+ <%= f.select :subject, options_for_select([["English", "English"], ["Math - General", "Math"],["-Calculus", "Calculus"], ["Biology - General", "Biology"],["-Microbiology", "Microbiology"],["Chemistry - General", "Chemistry"], ["-Organic Chemistry", "Organic Chemistry"], ["Physics - General", "Physics"], ["-Quantum Physics", "Quantum Physics"], ["History - General", "History"], ["-US History", "US History"]]) %>
 
       <%= f.submit "Create Post", class: "btn btn-primary" %>
  <% end %>

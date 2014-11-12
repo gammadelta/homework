@@ -7,6 +7,8 @@ class CreateAssignments < ActiveRecord::Migration
     	t.integer :points
     	t.integer :doneBy
     	t.string :answer
+    	t.string :subject
+
 
       t.timestamps
     end
