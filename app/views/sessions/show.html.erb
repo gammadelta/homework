@@ -5,7 +5,7 @@ Dont like your name <%= link_to "Change it", 'sessions/edit' %>
 <% @assignment.each do |post|%>
 	<div id="post">
 		
-	<%= post.points%>	<%=post.description %> <%= link_to "edit", edit_assignment_path(post) %>
+	<%= post.points%> <%= link_to Subsubject.find(post.subsubject).name, Subsubject.find(post.subsubject)%>	<%=post.description %> <%= link_to "edit", edit_assignment_path(post) %>
 </div>
 <%end%>
 

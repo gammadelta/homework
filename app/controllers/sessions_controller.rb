@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
+ 
   def create
     user = User.from_omniauth(env["omniauth.auth"])
-      
       if !user.userName
     	 user.points = 5
        user.banned = false

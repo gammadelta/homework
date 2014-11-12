@@ -1,2 +1,15 @@
-<h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
+<%if current_user%>
+<div id="post">
+
+<%= button_to "Post New Assignment","/post", class: "mid section"%>
+</div>
+
+<% Subject.all.each do |subject|%>
+
+<div class = "picture_container">
+	<% photoName ="photo" + ".jpg" %>
+	<%= link_to image_tag(photoName),  subject,class: "icon"%>
+	<%= subject.name %>
+</div>
+<%end%>
+<%end%>

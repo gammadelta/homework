@@ -3,19 +3,17 @@
     <% end %>
 <%= form_for(@assignment) do |f| %>
 		
-	  <div id="assignment-description">
+	
       	<%= f.label :description %><br>
-      	<%= f.text_area :description, placeholder: "descirbe your assignemnt here"  %>
-  	  </div>
-  	  <div id="points">
+      	<%= f.text_area :description, placeholder: "descirbe your assignemnt here", class:  'form-control'%>
+  	 
       You have <%=current_user.points %> 
       <%= f.label :points %> <br>
-      <%= f.text_field :points, placeholder: "number of points"%>
-  	  </div>	
-  	  <div id="subject">
-   <%=f.label :subject%><br>
- <%= f.select :subject, options_for_select([["English", "English"], ["Math - General", "Math"],["-Calculus", "Calculus"], ["Biology - General", "Biology"],["-Microbiology", "Microbiology"],["Chemistry - General", "Chemistry"], ["-Organic Chemistry", "Organic Chemistry"], ["Physics - General", "Physics"], ["-Quantum Physics", "Quantum Physics"], ["History - General", "History"], ["-US History", "US History"]]) %>
-</div>
+      <%= f.text_field :points, placeholder: "number of points", class:  'form-control'%>
+  	   <%=f.label :subject%><br>
+ <%= f.select :subsubject, options_for_select(subs), class:  'form-control' %>
+
+
 
       <%= f.submit "Create Post", class: "btn btn-primary" %>
  <% end %>

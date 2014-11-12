@@ -1,0 +1,8 @@
+<%= @sub.name %>
+<% Subsubject.where(subjectID: @sub.id).each do |x|%>
+<div class ="subsubject_link">
+<%= link_to x.name, x %>
+</div>
+<%end%>
+
+ 

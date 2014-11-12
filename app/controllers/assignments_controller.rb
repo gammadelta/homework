@@ -3,31 +3,42 @@ class AssignmentsController < ApplicationController
 
  def show
  	logged_in_user
+ 	 @assignment = Assignment.find(params[:id])
  	@assignment = Assignment.find(params[:id])
  	@user = User.find(@assignment.UID)
+ 	rescue ActiveRecord::RecordNotFound
+  redirect_to root_url, :flash => { :error => "Record not found." }
 
  end
 
  def new
  	logged_in_user
  	@assignment = Assignment.new
-
+ 	@subs = Subject.all.map { |s| (["--"+s.name, 0]) }
+ 	index = 1
+ 	@subs.length.times do |x|
+		 Subsubject.where(subjectID: x+1).each do |i|
+			@subs.insert(index, [i.name, i.id])
+			index+= 1
+		end
+		index+= 1
+	end
 
  end
  
   def create
   	logged_in_user
   	@assignment = Assignment.new(params[:assignment].permit!)
-  	@assignment.UID = current_user.id
-  	@assignment.completed = false
 
-  	if (@assignment.points <= current_user.points) && @assignment.save 
+  	if  @assignment.save && (@assignment.points <= current_user.points) 
+  		@assignment.UID = current_user.id
+  		@assignment.completed = false
   		@assignment.save!
   		minusPoints
   		flash[:success] = "post successfully uploaded"
   		redirect_to @assignment
   	else
-  		if @assignment.points > current_user.points
+  		if @assignment.points && @assignment.points > current_user.points
   			flash[:danger] = "cannot use more points than you have"
   		end
   		render 'new'
@@ -62,7 +73,7 @@ class AssignmentsController < ApplicationController
   	end
   end
 
-  
+
 include SessionsHelper
   private
 

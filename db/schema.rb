@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110041913) do
+ActiveRecord::Schema.define(version: 20141112021438) do
 
   create_table "assignments", force: true do |t|
     t.integer  "UID"
@@ -20,7 +20,20 @@ ActiveRecord::Schema.define(version: 20141110041913) do
     t.integer  "points"
     t.integer  "doneBy"
     t.string   "answer"
-    t.string   "subject"
+    t.integer  "subsubject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subjects", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subsubjects", force: true do |t|
+    t.string   "name"
+    t.integer  "subjectID"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
