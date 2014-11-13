@@ -6,13 +6,13 @@
 	
       	<%= f.label :description %><br>
       	<%= f.text_area :description, placeholder: "descirbe your assignemnt here", class:  'form-control'%>
-  	 
+  	<%= f.label :duedate %><br>
+     <%= f.text_field :duedate, placeholder: "month/day/year", class:  'form-control'%><br>
       You have <%=current_user.points %> 
       <%= f.label :points %> <br>
       <%= f.text_field :points, placeholder: "number of points", class:  'form-control'%>
   	   <%=f.label :subject%><br>
- <%= f.select :subsubject, options_for_select(subs), class:  'form-control' %>
-
+ <%= f.select :subsubject, options_for_select(subs), class:  'form-control' %><br>
 
 
       <%= f.submit "Create Post", class: "btn btn-primary" %>

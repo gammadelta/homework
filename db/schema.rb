@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112021438) do
+ActiveRecord::Schema.define(version: 20141113025356) do
 
   create_table "assignments", force: true do |t|
     t.integer  "UID"
@@ -21,6 +21,24 @@ ActiveRecord::Schema.define(version: 20141112021438) do
     t.integer  "doneBy"
     t.string   "answer"
     t.integer  "subsubject"
+    t.string   "duedate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.integer  "sender"
+    t.text     "message"
+    t.integer  "recever"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "responses", force: true do |t|
+    t.integer  "UID"
+    t.integer  "assignmentID"
+    t.string   "response"
+    t.boolean  "selected"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

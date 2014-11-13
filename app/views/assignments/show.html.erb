@@ -1,10 +1,17 @@
 
 		Posted by <%= @user.userName %> <br>
-	<%= @assignment.points%> 
+  Due on <%= @assignment.duedate %> worth 	<%= @assignment.points%> points 
 
 	<%= link_to Subsubject.find(@assignment.subsubject).name, Subsubject.find(@assignment.subsubject)%>
 
 
-		<%=@assignment.description %> <% if current_user.id == @user.id %>  
+		<%=@assignment.description %> <% if @assignment.UID == current_user.id %>  
 	<%= link_to "edit", edit_assignment_path(@assignment) %><%end %>
+<%unless @assignment.UID == current_user.id %>
 
+<%= form_for (@answer) do |f|%>
+  <%=f.text_area :response, placeholder: "type your answer here",class:  'form-control' %>
+
+  <%= f.submit "Send Answer", class: "btn btn-primary" %>
+<%end%>
+<%end%>

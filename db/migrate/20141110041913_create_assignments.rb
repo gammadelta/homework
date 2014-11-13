@@ -8,7 +8,7 @@ class CreateAssignments < ActiveRecord::Migration
     	t.integer :doneBy
     	t.string :answer
     	t.integer :subsubject
-
+t.string :duedate
 
       t.timestamps
     end

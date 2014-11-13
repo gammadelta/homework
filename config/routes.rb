@@ -16,6 +16,7 @@ GoogleAuthExample::Application.routes.draw do
   resources :assignments, only:[:show, :edit, :update, :create, :new]
   resources :subjects, only: [:show]
   resources :subsubjects, only: [:show]
+  resource :responses, only: [:create, :destroy]
 
   root to: "home#show"
 end

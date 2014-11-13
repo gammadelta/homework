@@ -6,6 +6,7 @@ class AssignmentsController < ApplicationController
  	 @assignment = Assignment.find(params[:id])
  	@assignment = Assignment.find(params[:id])
  	@user = User.find(@assignment.UID)
+  @response = Response.new(assignmentID: @assighment.id)
  	rescue ActiveRecord::RecordNotFound
   redirect_to root_url, :flash => { :error => "Record not found." }
 
