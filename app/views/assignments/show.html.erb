@@ -7,11 +7,10 @@
 
 		<%=@assignment.description %> <% if @assignment.UID == current_user.id %>  
 	<%= link_to "edit", edit_assignment_path(@assignment) %><%end %>
-<%unless @assignment.UID == current_user.id %>
-
-<%= form_for (@answer) do |f|%>
+  <%unless @assignment.UID == current_user.id %>
+  <%= form_for (@answer) do |f|%>
   <%=f.text_area :response, placeholder: "type your answer here",class:  'form-control' %>
-
+ <%= f.hidden_field :id, value: @assignment.id %>
   <%= f.submit "Send Answer", class: "btn btn-primary" %>
 <%end%>
 <%end%>

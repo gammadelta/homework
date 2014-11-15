@@ -3,7 +3,7 @@
 	<% Assignment.where(subsubject: @subsubject.id ).each do |post|%>
 	<div id="post">
 		
-	<%= post.points%>	<%=post.description %> <%= link_to "edit", edit_assignment_path(post) %>
+	<%= post.points%>	<%= link_to post.description, post %> 
 </div>
 <%end%>
 

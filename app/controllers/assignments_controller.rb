@@ -3,11 +3,11 @@ class AssignmentsController < ApplicationController
 
  def show
  	logged_in_user
- 	 @assignment = Assignment.find(params[:id])
  	@assignment = Assignment.find(params[:id])
  	@user = User.find(@assignment.UID)
-  @response = Response.new(assignmentID: @assighment.id)
- 	rescue ActiveRecord::RecordNotFound
+  @answer = @assignment.id.build
+ 	#byebug
+  rescue ActiveRecord::RecordNotFound
   redirect_to root_url, :flash => { :error => "Record not found." }
 
  end
