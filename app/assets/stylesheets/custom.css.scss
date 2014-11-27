@@ -1,8 +1,72 @@
-
-
-
-
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+//#post { background-image: url(bg.jpg); text-align:center; width: 100%; height: 100%; position: relative;}
+//#box  {margin:0 auto;
+ //   width: 20%; height:20%; position:absolute; top: 50%; left: 50%; margin-top: -10%; margin-left:-10%;}
+ #logo{
+ 	position: absolute;
+	
+ }
+ .center {
+  text-align: center;
+}
+
+.masthead{
+ margin-left: -10%;
+    height: 300px;
+    width: 120%;
+    background-image:url("bg.jpg");
+    //background-repeat:no-repeat;
+}
+.jumbotron{
+	margin-top: -50px;
+}
+.picture_container{
+	padding-top: 5px;
+	font:size 2em;
+	text-align: center;
+}
+.icon img{
+	
+	height: 75px;
+	width: 75px;
+	
+}
+#new_post{
+	margin-top: 5%;
+}
+
+.iconLink{
+	color: grey;
+}
+.iconLink:hover {
+	color: grey;
+}
+.badge { 
+  color: #FFFFFF; 
+  background-color: #159ED8; 
+  border-color: #159ED8; 
+} 
+.message {
+	border-bottom-size: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+	
+	color: black;
+	font-weight: bold;
+}
+
+#inbox{
+	font-size: 3em;
+}
+.openMessage{
+	border-bottom-size: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: black;
+
+	color: black;
+	background-color: #CDCDCD;
+
+	
+}

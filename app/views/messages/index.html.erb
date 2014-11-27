@@ -1,0 +1,22 @@
+<div id= "inbox">
+INBOX <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+</div>
+<% @messages.each do |message| %>
+<%= link_to  message do%>
+<% if message.opened %>
+<div class = "openMessage">
+	From: <%= User.find(message.sender).userName %>
+	<br>
+	Subject: <%= message.subject %>
+	<br>
+	</div>
+	<%else%>
+<div class = "message">
+From: <%= User.find(message.sender).userName %>
+	<br>
+	Subject: <%= message.subject %>
+	<br>
+</div>
+	<%end%>
+	<%end%>
+<%end%>

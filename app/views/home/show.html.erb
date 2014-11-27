@@ -1,15 +1,22 @@
 <%if current_user%>
-<div id="post">
-
-<%= link_to "Post New Assignment", "/assignments/new"%>
+<div class= "center masthead" id="box">
+<%= link_to "Post New Assignment", "/assignments/new", class: "btn btn-lg btn-primary", id: "new_post"%>
 </div>
 
-<% Subject.all.each do |subject|%>
-
-<div class = "picture_container">
-	<% photoName ="photo" + ".jpg" %>
-	<%= link_to image_tag(photoName),  subject,class: "icon"%>
-	<%= subject.name %>
+<div class = "jumbotron">
+	<div class= "container">
+		<div class = "row">
+			<div class = "col-md-12 center" style = "font-size: 3em;">
+				Find an assignment to help with
+			</div>
+		</div>
+		<% Subject.all.each do |subject|%>
+		<div class = "picture_container col-md-3">
+			<% photoName ="#{subject.id}.jpg" %>
+			<%= link_to image_tag(photoName),  subject,class: "icon" %><br>
+			<%= link_to subject.name, subject, class: "iconLink" %> 
+		</div>
+		<%end%>
+	</div>
 </div>
-<%end%>
 <%end%>

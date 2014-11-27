@@ -3,9 +3,12 @@ class AssignmentsController < ApplicationController
 
  def show
  	logged_in_user
- 	@assignment = Assignment.find(params[:id])
+  @assignment = Assignment.find(params[:id])
  	@user = User.find(@assignment.UID)
-  @answer = @assignment.id.build
+  @answer = Response.new
+  @answers = Response.where(assignmentID: @assignment.id)
+  @done = Response.find_by(assignmentID: @assignment, UID: current_user.id)
+  @message = Message.new
  	#byebug
   rescue ActiveRecord::RecordNotFound
   redirect_to root_url, :flash => { :error => "Record not found." }
@@ -31,7 +34,7 @@ class AssignmentsController < ApplicationController
   	logged_in_user
   	@assignment = Assignment.new(params[:assignment].permit!)
 
-  	if  @assignment.save && (@assignment.points <= current_user.points) 
+  	if  @assignment.save && (@assignment.points <= current_user.points)  
   		@assignment.UID = current_user.id
   		@assignment.completed = false
   		@assignment.save!
@@ -60,7 +63,7 @@ class AssignmentsController < ApplicationController
    	x = @assignment.points
    	y = current_user.points + x
 
-  	if (@assignment.points <= x) && @assignment.update_attributes(params[:assignment].permit!)
+  	if (@assignment.points <= x) && @assignment.update_attributes(params[:assignment].permit!) 
   		current_user.update(points: x)
   		@assignment.save!
   		minusPoints
@@ -72,6 +75,26 @@ class AssignmentsController < ApplicationController
   		end
   		render 'edit'
   	end
+  end
+
+  def choose
+    byebug
+  end
+
+  def destroy
+    @assignment  = Assignment.find(params[:id])
+    u =  User.find(session[:user_id])
+    p = @assignment.points +  u.points
+    u.update(points: p)
+    answers = Response.where(assignmentID: @assignment.id)
+    answers.each do |x|
+      Message.create(sender: current_user.id, recever: x.UID, subject: "Deleted asignment", message: "A question you responded to was deleted before a winner was chosen. We have given you half of the points the question was worth because of this inconvenice to you.", opened: false)
+      sorryPonits = User.find(x.UID).points + (@assignment.points/2)
+      User.find(x.UID).update(points: sorryPonits)
+      x.delete
+    end
+    @assignment.delete
+    redirect_to root_path
   end
 
 

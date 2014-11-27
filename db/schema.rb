@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(version: 20141113025356) do
   create_table "messages", force: true do |t|
     t.integer  "sender"
     t.text     "message"
+    t.string   "subject"
     t.integer  "recever"
+    t.boolean  "opened"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

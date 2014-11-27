@@ -1,16 +1,47 @@
-
-		Posted by <%= @user.userName %> <br>
-  Due on <%= @assignment.duedate %> worth 	<%= @assignment.points%> points 
-
-	<%= link_to Subsubject.find(@assignment.subsubject).name, Subsubject.find(@assignment.subsubject)%>
-
-
-		<%=@assignment.description %> <% if @assignment.UID == current_user.id %>  
-	<%= link_to "edit", edit_assignment_path(@assignment) %><%end %>
-  <%unless @assignment.UID == current_user.id %>
-  <%= form_for (@answer) do |f|%>
-  <%=f.text_area :response, placeholder: "type your answer here",class:  'form-control' %>
- <%= f.hidden_field :id, value: @assignment.id %>
-  <%= f.submit "Send Answer", class: "btn btn-primary" %>
+<%if current_user.id == @assignment.UID %>
+	<%= link_to "Delete post",  @assigment,  method: :delete %> <br>
 <%end%>
+
+Posted by <%= @user.userName %>
+<br>
+Due on <%= @assignment.duedate %> worth <%= @assignment.points%> points 
+
+<%= link_to Subsubject.find(@assignment.subsubject).name, Subsubject.find(@assignment.subsubject)%>
+
+
+<%=@assignment.description %> 
+<% if @assignment.UID == current_user.id %>  
+	<%= link_to "edit", edit_assignment_path(@assignment) %>
+<%end %>
+
+<%if @assignment.UID != current_user.id && !@done %>
+ <br>
+ <%= link_to_function "Let them know you're working on it", 'showMessage()'%>
+ 	<div id='message' class = 'hide'>
+ 		<%= form_for(@message) do |f| %>
+ 			<%= f.text_field :subject, placeholder: "subject", class:  'form-control'  %>
+ 			<%= f.text_area :message, placeholder: "message", class:  'form-control' %>
+ 			<%= f.hidden_field :recever, value: @user.id %>
+ 			<%= f.submit "Send Message", class: "btn btn-primary" %>
+ 		<%end%>
+ 	</div>
+  <%= form_for (@answer) do |f|%>
+  	<%=f.text_area :response, placeholder: "type your answer here",class:  'form-control' %>
+ 	<%= f.hidden_field :assignmentID, value: @assignment.id %>
+  	<%= f.submit "Send Answer", class: "btn btn-primary" %>
+  <%end%>
+<%elsif @done %>
+	<br>
+	Your answer: <%= @done.response %>
+<%elsif current_user.id ==  @assignment.UID%>
+	<%= form_for @assignment do |f|%>
+		<% @answers.each do |ans|%>
+		 <div>
+		 <%= f.radio_button :doneBy, ans.UID%>
+		 <%= f.label :doneBy, ans.response %>
+   		</div>
+   		 <%end%>
+   		 <%= f.submit "Choose solution", class: "btn btn-primary" %>
+	<%end%>
+	
 <%end%>

@@ -12,8 +12,9 @@
       <%= f.text_field :points%>
   	  </div>	
   	  <div id="subject">
-   <%=f.label :subject%><br>
- <%= f.select :subject, options_for_select([["English", "English"], ["Math - General", "Math"],["-Calculus", "Calculus"], ["Biology - General", "Biology"],["-Microbiology", "Microbiology"],["Chemistry - General", "Chemistry"], ["-Organic Chemistry", "Organic Chemistry"], ["Physics - General", "Physics"], ["-Quantum Physics", "Quantum Physics"], ["History - General", "History"], ["-US History", "US History"]]) %>
+  
+ <%=f.label :subject%><br>
+ <%= f.select :subsubject, options_for_select(subs), class:  'form-control' %><br>
 </div>
 
       <%= f.submit "Create Post", class: "btn btn-primary" %>
