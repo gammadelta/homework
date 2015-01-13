@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
-   has_many :microposts, dependent: :destroy
-   
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  # has_many :microposts, dependent: :destroy
+=begin  
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       emailAddress = auth.extra.raw_info.email
@@ -17,6 +21,6 @@ class User < ActiveRecord::Base
       end
     end
   end
-
+=end
   
 end

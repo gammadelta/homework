@@ -8,9 +8,10 @@
          <% if current_user %>
          <% m =  Message.where(recever: current_user.id, opened: false).length %>
           <li><%= link_to profile_path do %>Profile <span class="badge" ><%= m %></span> <%end%></li>
-          <li> <%= link_to "Sign out", signout_path%></li>
+          <li> <%= link_to "Sign out", destroy_user_session_path %></li>
       <% else %>
-       <li> <%= link_to "Sign in/Sign up", "/auth/google_oauth2/"%></li>
+       <li> <%= link_to "Sign in", "/users/sign_in"%></li>
+       <li> <%= link_to "Sign up", "/users/sign_up"%></li>
       <% end %>
       </ul>
     </nav>
